@@ -20,6 +20,8 @@ public struct BottomSheet {
         case contentBackground(AnyView)
         /// Changes the corner radius of the BottomSheet.
         case cornerRadius(CGFloat)
+        /// Disables the BottomSheet dismiss when swiped down.
+        case disableSwipeToDismiss
         /// Changes the color of the drag indicator.
         case dragIndicatorColor(Color)
         /// Sets the padding to the BottomSheet inner elements
@@ -28,8 +30,6 @@ public struct BottomSheet {
         case maxHeight(CGFloat)
         /// Hides the drag indicator.
         case noDragIndicator
-        /// Dismisses the BottomSheet when swiped down.
-        case swipeToDismiss
         /// Dismisses the BottomSheet when the background is tapped.
         case tapToDismiss
         /// Sets the top padding for the BottomSheet
@@ -49,6 +49,8 @@ public struct BottomSheet {
                 return "contentBackground"
             case .cornerRadius:
                 return "cornerRadius"
+            case .disableSwipeToDismiss:
+                return "disableSwipeToDismiss"
             case .dragIndicatorColor:
                 return "dragIndicatorColor"
             case .elementsPadding:
@@ -57,8 +59,6 @@ public struct BottomSheet {
                 return "maxHeight"
             case .noDragIndicator:
                 return "noDragIndicator"
-            case .swipeToDismiss:
-                return "swipeToDismiss"
             case .tapToDismiss:
                 return "tapToDissmiss"
             case .topPadding:
@@ -110,6 +110,10 @@ public extension Array where Element == BottomSheet.Options {
         return 24
     }
 
+    var disableSwipeToDismiss: Bool {
+        self.contains(BottomSheet.Options.disableSwipeToDismiss)
+    }
+    
     var dragIndicatorColor: Color {
         for item in self {
             if case .dragIndicatorColor(let customDragIndicatorColor) = item {
@@ -142,10 +146,6 @@ public extension Array where Element == BottomSheet.Options {
 
     var noDragIndicator: Bool {
         self.contains(BottomSheet.Options.noDragIndicator)
-    }
-
-    var swipeToDismiss: Bool {
-        self.contains(BottomSheet.Options.swipeToDismiss)
     }
 
     var tapToDismiss: Bool {
