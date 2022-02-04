@@ -31,7 +31,7 @@ import SwiftUI
 ///     }
 /// }
 /// ```
-public protocol ModalPresentationState: Identifiable {
+public protocol ModalPresentationState: Identifiable, Equatable {
     associatedtype Content: View
 
     @ViewBuilder func view(dismissAction: @escaping () -> Void) -> Content
@@ -52,11 +52,27 @@ protocol ModalPresenter {
 }
 
 public class ModalViewRouter<PresentationState: ModalPresentationState>: ObservableObject, ModalPresenter {
-    @Published var customSheetPresentationState: PresentationState?
-    @Published var fullScreenModalPresentationState: PresentationState?
-    @Published var sheetPresentationState: PresentationState?
+    @Published var customSheetPresentationState: PresentationState? {
+        didSet {
+            handlePresentationStateChange(oldValue: oldValue, newValue: customSheetPresentationState)
+        }
+    }
+    @Published var fullScreenModalPresentationState: PresentationState? {
+        didSet {
+            handlePresentationStateChange(oldValue: oldValue, newValue: fullScreenModalPresentationState)
+        }
+    }
+    @Published var sheetPresentationState: PresentationState? {
+        didSet {
+            handlePresentationStateChange(oldValue: oldValue, newValue: sheetPresentationState)
+        }
+    }
+    
+    private var onDismiss: (() -> Void)?
 
     public init() {}
+    
+    // MARK: Modal open/close
 
     public func setModal(state: PresentationState, type: ModalPresentationType) {
         modal(state: state, type: type, onDismiss: nil)
@@ -71,9 +87,13 @@ public class ModalViewRouter<PresentationState: ModalPresentationState>: Observa
         fullScreenModalPresentationState = nil
         sheetPresentationState = nil
     }
+    
+    // MARK: Modal manipulation
 
     private func modal(state: PresentationState, type: ModalPresentationType, onDismiss: (() -> Void)? = nil) {
         if customSheetPresentationState == nil, fullScreenModalPresentationState == nil, sheetPresentationState == nil {
+            self.onDismiss = onDismiss
+            
             switch type {
             case .customSheet:
                 customSheetPresentationState = state
@@ -84,10 +104,6 @@ public class ModalViewRouter<PresentationState: ModalPresentationState>: Observa
             }
         } else {
             closeModal()
-
-            if let onDismiss = onDismiss {
-                onDismiss()
-            }
             // This delay is fixing an issue where exchanging modals would create an issue where
             // they were presented in the previous views modal window
             DispatchQueue.main.asyncAfter(deadline: .now().advanced(by: .milliseconds(300))) {
@@ -95,5 +111,25 @@ public class ModalViewRouter<PresentationState: ModalPresentationState>: Observa
             }
         }
     }
+    
+    // MARK: Modal close actions
 
+    /// Checks whether the presentation state was updated and removed, calls the dismiss action on true
+    ///
+    ///  - parameters:
+    ///     - oldValue: Old presentation state value
+    ///     - newValue: New presentation state value
+    ///     
+    private func handlePresentationStateChange(oldValue: PresentationState?, newValue: PresentationState?) {
+        guard oldValue != newValue, newValue == nil else { return }
+        
+        dismissOnClose()
+    }
+    
+    /// Calls the dismiss action and removes it
+    private func dismissOnClose() {
+        onDismiss?()
+        
+        onDismiss = nil
+    }
 }

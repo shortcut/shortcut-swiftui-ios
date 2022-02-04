@@ -49,4 +49,56 @@ public extension View {
         self.modifier(ModalViewPresenterViewModifier<PresentationState>(options: options))
     }
 }
+
+// MARK: - Preview
+
+struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        TestView()
+    }
+    
+    private struct TestView: View {
+        @StateObject private var testModalViewRouter = TestModalViewRouter()
+        
+        @State var color: Color = .red
+        
+        var body: some View {
+            ZStack {
+                color.opacity(0.5)
+                
+                Button("Show modal") {
+                    testModalViewRouter.setModal(state: .text("Hello World!"),
+                                                 type: .customSheet) {
+                        color = [Color.red, .purple, .blue, .yellow, .green].randomElement() ?? .orange
+                    }
+                }
+            }
+                .modalViewPresenter(presentationStateType: TestModalPresentationState.self,
+                                    options: [.tapToDismiss,
+                                              .maxHeight(500)])
+                .environmentObject(testModalViewRouter)
+        }
+    }
+    
+    private typealias TestModalViewRouter = ModalViewRouter<TestModalPresentationState>
+    
+    private enum TestModalPresentationState: ModalPresentationState {
+        case text(String)
+        
+        var id: String {
+            switch self {
+            case .text(let text):
+                return "text-\(text)"
+            }
+        }
+        
+        func view(dismissAction: @escaping () -> Void) -> some View {
+            switch self {
+            case .text(let text):
+                return Text(text)
+            }
+        }
+    }
+}
+
 #endif

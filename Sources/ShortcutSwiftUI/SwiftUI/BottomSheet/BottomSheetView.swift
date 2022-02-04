@@ -54,7 +54,7 @@ struct SheetView<Content: View>: View {
             }
             .transition(.move(edge: .bottom))
         }
-        .animation(options.animation, value: isOpened)
+        .animation(options.animation)
     }
 
     private var indicator: some View {
