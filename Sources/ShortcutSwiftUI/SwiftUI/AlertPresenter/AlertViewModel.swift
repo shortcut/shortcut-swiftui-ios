@@ -1,3 +1,5 @@
+// swiftlint:disable redundant_optional_initialization
+// swiftlint:disable nesting
 //
 //  Alert+Extension.swift
 //  ShortcutSwiftUI
@@ -9,7 +11,6 @@
 import SwiftUI
 
 struct AlertViewModel {
-    // swiftlint:disable redundant_optional_initialization
     let title: String
     var message: String? = nil
     
@@ -21,7 +22,6 @@ struct AlertViewModel {
         let action: () -> Void
         let buttonType: ButtonType
         
-        // swiftlint:disable nesting
         enum ButtonType {
             case normal, cancel, destructive
         }
