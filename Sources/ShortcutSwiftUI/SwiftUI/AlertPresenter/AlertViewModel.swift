@@ -10,26 +10,26 @@
 
 import SwiftUI
 
-struct AlertViewModel {
-    let title: String
-    var message: String? = nil
+public struct AlertViewModel {
+    public let title: String
+    public var message: String? = nil
     
-    let primary: Action
-    var secondary: Action? = nil
+    public let primary: Action
+    public var secondary: Action? = nil
     
-    struct Action {
-        let title: String
-        let action: () -> Void
-        let buttonType: ButtonType
+    public struct Action {
+        public let title: String
+        public let action: () -> Void
+        public let buttonType: ButtonType
         
-        enum ButtonType {
+        public enum ButtonType {
             case normal, cancel, destructive
         }
     }
 }
 
 extension AlertViewModel.Action {
-    var alertButton: Alert.Button {
+    public var alertButton: Alert.Button {
         switch self.buttonType {
         case .normal:
             return Alert.Button.default(Text(self.title), action: self.action)

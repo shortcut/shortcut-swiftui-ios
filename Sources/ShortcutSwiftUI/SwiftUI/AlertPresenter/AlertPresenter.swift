@@ -9,23 +9,23 @@
 import Foundation
 import SwiftUI
 
-protocol IAlertPresenter {
+public protocol IAlertPresenter {
     func setAlert(state: AlertPresentationState, type: AlertPresentationType)
     func closeAlert()
 }
 
-class AlertPresenter: ObservableObject, IAlertPresenter {
+public class AlertPresenter: ObservableObject, IAlertPresenter {
     
-    @Published var alertPresentationState: AlertPresentationState?
-    @Published var actionSheetPresentationState: AlertPresentationState?
+    @Published public var alertPresentationState: AlertPresentationState?
+    @Published public var actionSheetPresentationState: AlertPresentationState?
     
-    init() {}
+    public init() {}
     
-    func setAlert(state: AlertPresentationState, type: AlertPresentationType) {
+    public func setAlert(state: AlertPresentationState, type: AlertPresentationType) {
         alert(state: state, type: type)
     }
     
-    func closeAlert() {
+    public func closeAlert() {
         alertPresentationState = nil
         actionSheetPresentationState = nil
     }
@@ -44,7 +44,7 @@ class AlertPresenter: ObservableObject, IAlertPresenter {
         }
     }
     
-    func alertContent(for state: AlertPresentationState) -> Alert {
+    public func alertContent(for state: AlertPresentationState) -> Alert {
         switch state {
             
         case .titleAndDismiss(let title, let buttonTitle):
@@ -69,7 +69,7 @@ class AlertPresenter: ObservableObject, IAlertPresenter {
         }
     }
     
-    func actionSheetContent(for state: AlertPresentationState) -> ActionSheet {
+    public func actionSheetContent(for state: AlertPresentationState) -> ActionSheet {
         switch state {
             
         case .titleAndDismiss(let title, let buttonTitle):
@@ -95,9 +95,9 @@ class AlertPresenter: ObservableObject, IAlertPresenter {
     }
 }
 
-enum AlertPresentationState: Identifiable {
+public enum AlertPresentationState: Identifiable {
     
-    var id: String {
+    public var id: String {
         switch self {
         case .titleAndDismiss: return "titleAndDismiss"
         case .titleMessageAndDismiss: return "titleMessageAndDismiss"
@@ -116,7 +116,7 @@ enum AlertPresentationState: Identifiable {
                                   Alert.SecondaryButtonTitle, Alert.SecondaryButtonAction, AlertViewModel.Action.ButtonType = .cancel)
 }
 
-enum AlertPresentationType {
+public enum AlertPresentationType {
     case alert
     case actionSheet
 }
