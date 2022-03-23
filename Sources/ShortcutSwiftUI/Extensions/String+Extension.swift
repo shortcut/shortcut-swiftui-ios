@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension String {
+public extension String {
     
     var text: SwiftUI.Text { SwiftUI.Text(self) }
 }
