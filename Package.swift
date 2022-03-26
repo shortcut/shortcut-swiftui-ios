@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "shortcut-swiftui-ios",
+    name: "ShortcutSwiftUI",
     platforms: [
         .iOS(.v13),
         .macOS(.v11),
