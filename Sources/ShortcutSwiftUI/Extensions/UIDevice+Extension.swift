@@ -8,7 +8,6 @@
 
 #if !os(macOS)
 import UIKit
-#endif
 
 extension UIDevice {
     @available(iOS 15.0, *)
@@ -18,3 +17,4 @@ extension UIDevice {
         return bottom > 0
     }
 }
+#endif
