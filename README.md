@@ -13,8 +13,8 @@ Contains common utility functions and extensions.
 
 ## Requirements
 
-- **iOS 12+**
-- **Xcode 11+**
+- **iOS 13+**
+- **Xcode 13+**
 
 ## Style Guide
 
