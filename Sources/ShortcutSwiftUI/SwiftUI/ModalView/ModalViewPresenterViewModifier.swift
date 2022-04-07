@@ -12,10 +12,14 @@ import SwiftUI
 struct ModalViewPresenterViewModifier<PresentationState: ModalPresentationState>: ViewModifier {
     @EnvironmentObject var modalViewRouter: ModalViewRouter<PresentationState>
 
-    private let options: [BottomSheet.Options]
+    @Binding private var options: [BottomSheet.Options]
 
     init(options: [BottomSheet.Options] = []) {
-        self.options = options
+        self._options = .constant(options)
+    }
+    
+    init(options: Binding<[BottomSheet.Options]>) {
+        self._options = options
     }
 
     public func body(content: Content) -> some View {
@@ -44,8 +48,26 @@ public extension View {
     /// Works with the implementation of the `ModalPresentationState` protocol that represents all modals that can be shown with this presenter.
     /// Need to set an environmentObject of `ModalViewRouter<S: ModalPresentationState>` before using this modifier otherwise an error will occur.
     ///
+    ///  - parameters:
+    ///     - presentationStateType: A type that represent possible states to show
+    ///     - options: Modal view options to customise it
+    ///
     func modalViewPresenter<PresentationState: ModalPresentationState>(presentationStateType: PresentationState.Type,
-                                                                       options: [BottomSheet.Options]) -> some View {
+                                                                       options: [BottomSheet.Options] = []) -> some View {
+        self.modifier(ModalViewPresenterViewModifier<PresentationState>(options: options))
+    }
+    
+    /// A view modifier to present modal views from any view.
+    ///
+    /// Works with the implementation of the `ModalPresentationState` protocol that represents all modals that can be shown with this presenter.
+    /// Need to set an environmentObject of `ModalViewRouter<S: ModalPresentationState>` before using this modifier otherwise an error will occur.
+    ///
+    ///  - parameters:
+    ///     - presentationStateType: A type that represent possible states to show
+    ///     - options: A options binding to allow to change the modal options
+    ///
+    func modalViewPresenter<PresentationState: ModalPresentationState>(presentationStateType: PresentationState.Type,
+                                                                       options: Binding<[BottomSheet.Options]>) -> some View {
         self.modifier(ModalViewPresenterViewModifier<PresentationState>(options: options))
     }
 }
@@ -61,6 +83,7 @@ struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
         @StateObject private var testModalViewRouter = TestModalViewRouter()
         
         @State var color: Color = .red
+        @State var options: [BottomSheet.Options] = [.disableSwipeToDismiss, .tapToDismiss]
         
         var body: some View {
             ZStack {
@@ -70,12 +93,13 @@ struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
                     testModalViewRouter.setModal(state: .text("Hello World!"),
                                                  type: .customSheet) {
                         color = [Color.red, .purple, .blue, .yellow, .green].randomElement() ?? .orange
+                        
+                        options = [.tapToDismiss]
                     }
                 }
             }
                 .modalViewPresenter(presentationStateType: TestModalPresentationState.self,
-                                    options: [.tapToDismiss,
-                                              .maxHeight(500)])
+                                    options: $options)
                 .environmentObject(testModalViewRouter)
         }
     }
