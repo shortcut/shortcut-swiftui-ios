@@ -1,6 +1,6 @@
 //
 //  View+Fullscreen.swift
-//  ShortcutFoundation
+//  ShortcutSwiftUI
 //
 //  Created by Karl Söderberg on 2022-08-25.
 //  Copyright © 2021 Shortcut Scandinavia Apps AB. All rights reserved.

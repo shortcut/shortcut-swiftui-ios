@@ -1,6 +1,6 @@
 //
 //  BottomSheet.swift
-//  ShortcutFoundation
+//  ShortcutSwiftUI
 //
 //  Created by Darya Gurinovich on 2022-01-07.
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
