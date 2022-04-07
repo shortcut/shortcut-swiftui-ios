@@ -32,7 +32,7 @@ Following our style guide should:
 
 ## Installation
 
-####Using as a dependency
+#### Using as a dependency
 
 ``` swift
 // swift-tools-version:5.1
