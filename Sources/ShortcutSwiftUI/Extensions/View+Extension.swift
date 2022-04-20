@@ -73,6 +73,10 @@ public extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 #endif
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 #if !os(macOS)
