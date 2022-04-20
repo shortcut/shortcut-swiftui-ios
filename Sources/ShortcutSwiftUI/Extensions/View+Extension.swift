@@ -68,11 +68,15 @@ public extension View {
         AnyView(self)
     }
 
-#if !os(macOS)
+    #if !os(macOS)
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
-#endif
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    #endif
 }
 
 #if !os(macOS)
