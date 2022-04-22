@@ -1,6 +1,6 @@
 //
 //  View+Extension.swift
-//  ShortcutSwiftUI
+//  ShortcutUI
 //
 //  Created by Darya Gurinovich on 2022-01-07.
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
@@ -68,15 +68,11 @@ public extension View {
         AnyView(self)
     }
 
-    #if !os(macOS)
+#if !os(macOS)
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
-    
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-    #endif
+#endif
 }
 
 #if !os(macOS)

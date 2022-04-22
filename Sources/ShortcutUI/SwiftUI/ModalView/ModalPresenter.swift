@@ -51,7 +51,7 @@ protocol ModalPresenter {
     func closeModal()
 }
 
-open class ModalViewRouter<PresentationState: ModalPresentationState>: ObservableObject, ModalPresenter {
+public class ModalViewRouter<PresentationState: ModalPresentationState>: ObservableObject, ModalPresenter {
     @Published var customSheetPresentationState: PresentationState? {
         didSet {
             handlePresentationStateChange(oldValue: oldValue, newValue: customSheetPresentationState)

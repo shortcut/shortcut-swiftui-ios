@@ -1,6 +1,6 @@
 //
 //  String+Extension.swift
-//  ShortcutSwiftUI
+//  ShortcutUI
 //
 //  Created by Sheikh Bayazid on 2022-03-16.
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
