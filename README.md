@@ -3,7 +3,7 @@
 Contains common utility functions and extensions.
 
 ![Swift 5.5](https://img.shields.io/badge/Swift-5.5-orange.svg)
-![Platforms](https://img.shields.io/badge/Xcode-12-orange.svg?style=flat)
+![Platforms](https://img.shields.io/badge/Xcode-13-orange.svg?style=flat)
 ![Platforms](https://img.shields.io/badge/platform-iOS-orange.svg?style=flat)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-orange.svg)](https://github.com/apple/swift-package-manager)
 
@@ -35,7 +35,7 @@ Following our style guide should:
 #### Using as a dependency
 
 ``` swift
-// swift-tools-version:5.1
+// swift-tools-version: 5.6
 
 import PackageDescription
 
