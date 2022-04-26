@@ -1,4 +1,4 @@
-# Shortcut SwiftUI
+# ShortcutUI
 
 Contains common utility functions and extensions.
 
@@ -45,11 +45,11 @@ let package = Package(
     .package(url: "git@github.com:shortcut/shortcut-swiftui-ios.git", from: "0.0.1")
   ],
   targets: [
-    .target(name: "YourTestProject", dependencies: ["ShortcutSwiftUI"])
+    .target(name: "YourTestProject", dependencies: ["ShortcutUI"])
   ]
 )
 ```
-And then import wherever needed: ```import ShortcutSwiftUI ```
+And then import wherever needed: ```import ShortcutUI ```
 
 #### Adding it to an existent iOS Project via Swift Package Manager
 
@@ -63,13 +63,13 @@ If you have doubts, please, check the following links:
 
 [Creating Swift Packages](https://developer.apple.com/videos/play/wwdc2019/410/)
 
-After successfully retrieved the package and added it to your project, just import `ShortcutSwiftUI` and you can get the full benefits of it.
+After successfully retrieved the package and added it to your project, just import `ShortcutUI` and you can get the full benefits of it.
 
 
 ## Usage example
 
 ```swift
-import ShortcutSwiftUI
+import ShortcutUI
 
 ...
 ```
@@ -82,3 +82,4 @@ import ShortcutSwiftUI
 4. Perform your changes, debug, run the unit tests
 5. Make sure that all the tests pass and there are no Xcode warnings or lint issues
 6. Open a pull request
+

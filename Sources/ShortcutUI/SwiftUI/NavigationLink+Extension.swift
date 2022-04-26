@@ -1,6 +1,6 @@
 //
 //  NavigationLink+Extension.swift
-//  ShortcutSwiftUI
+//  ShortcutUI
 //
 //  Created by Karl Söderberg on 2022-01-17.
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.

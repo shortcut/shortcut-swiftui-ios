@@ -1,6 +1,6 @@
 //
 //  UIDevice+Extension.swift
-//  ShortcutSwiftUI
+//  ShortcutUI
 //
 //  Created by Sina Rabiei on 2022-03-30.
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.

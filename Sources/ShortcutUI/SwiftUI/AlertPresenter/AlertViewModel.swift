@@ -2,7 +2,7 @@
 // swiftlint:disable nesting
 //
 //  Alert+Extension.swift
-//  ShortcutSwiftUI
+//  ShortcutUI
 //
 //  Created by Sheikh Bayazid on 2022-02-14.
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
