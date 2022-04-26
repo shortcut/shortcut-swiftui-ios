@@ -9,7 +9,7 @@
 import SwiftUI
 
 public extension ActionSheet {
-    public init(vm: AlertViewModel) {
+    init(vm: AlertViewModel) {
         self.init(title: Text(vm.title),
                   message: vm.message?.text,
                   buttons: [vm.primary.alertButton, vm.secondary?.alertButton].compactMap { $0 })

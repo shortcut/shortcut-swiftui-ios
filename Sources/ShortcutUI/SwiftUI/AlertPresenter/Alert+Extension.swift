@@ -9,7 +9,7 @@
 import SwiftUI
 
 public extension Alert {
-    public init(vm: AlertViewModel) {
+    init(vm: AlertViewModel) {
         if let secondary = vm.secondary {
             self.init(title: Text(vm.title),
                       message: vm.message?.text,
