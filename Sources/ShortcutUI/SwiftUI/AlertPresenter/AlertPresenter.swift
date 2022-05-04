@@ -32,11 +32,13 @@ public class AlertPresenter: ObservableObject, IAlertPresenter {
     
     private func alert(state: AlertPresentationState, type: AlertPresentationType) {
         if alertPresentationState == nil, actionSheetPresentationState == nil {
-            switch type {
-            case .alert:
-                alertPresentationState = state
-            case .actionSheet:
-                actionSheetPresentationState = state
+            DispatchQueue.main.async {
+                switch type {
+                case .alert:
+                    self.alertPresentationState = state
+                case .actionSheet:
+                    self.actionSheetPresentationState = state
+                }
             }
         } else {
             closeAlert()
