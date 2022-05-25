@@ -8,7 +8,7 @@
 import SwiftUI
 
 public extension Button {
-    init(priority: TaskPriority? = nil, action: @escaping () async -> Void, label: () -> Label) {
+    init(priority: TaskPriority? = nil, action: @escaping () async -> Void, @ViewBuilder label: () -> Label) {
         self = Button(action: {
             Task(priority: priority) {
                 await action()
