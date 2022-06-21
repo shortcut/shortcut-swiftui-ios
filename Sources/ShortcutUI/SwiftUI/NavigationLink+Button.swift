@@ -6,7 +6,6 @@
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 public struct NavigationLinkButton<Destination: View, Label: View>: View {
@@ -40,7 +39,9 @@ public struct NavigationLinkButton<Destination: View, Label: View>: View {
 
 // This view lets us avoid instantiating our Destination before it has been pushed.
 public struct LazyDestination<Destination: View>: View {
+    
     var destination: () -> Destination
+    
     public var body: some View {
         self.destination()
     }

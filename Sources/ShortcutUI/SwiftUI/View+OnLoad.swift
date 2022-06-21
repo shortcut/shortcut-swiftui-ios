@@ -6,7 +6,6 @@
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 struct ViewDidLoadModifier: ViewModifier {
@@ -26,13 +25,10 @@ struct ViewDidLoadModifier: ViewModifier {
             }
         }
     }
-
 }
 
 extension View {
-
     public func onLoad(perform action: (() -> Void)? = nil) -> some View {
         modifier(ViewDidLoadModifier(perform: action))
     }
-
 }
