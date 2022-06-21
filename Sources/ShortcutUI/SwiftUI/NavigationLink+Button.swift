@@ -3,7 +3,7 @@
 //  ShortcutUI
 //
 //  Created by Swathi on 2022-06-09.
-//  Copyright © 2021 Shortcut Scandinavia Apps AB. All rights reserved.
+//  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
 //
 
 import Foundation
