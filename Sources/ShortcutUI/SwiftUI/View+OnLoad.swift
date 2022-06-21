@@ -20,7 +20,7 @@ struct ViewDidLoadModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content.onAppear {
-            if didLoad == false {
+            if !didLoad {
                 didLoad = true
                 action?()
             }
