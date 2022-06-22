@@ -29,8 +29,8 @@ public struct NavigationLinkButton<Destination: View, Label: View>: View {
             self.label()
                 .background(
                     ScrollView { // Fixes a bug where the navigation bar may become hidden on the pushed view
-                        NavigationLink(destination: LazyDestination { self.destination() },
-                                       isActive: self.$isActive) { EmptyView() }
+                        NavigationLink(destination: LazyDestination { destination() },
+                                       isActive: $isActive) { EmptyView() }
                     }
                 )
         }
