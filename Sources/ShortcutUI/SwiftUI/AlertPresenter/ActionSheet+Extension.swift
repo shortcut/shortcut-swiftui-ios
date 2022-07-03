@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(OSX, unavailable)
 public extension ActionSheet {
     init(vm: AlertViewModel) {
         self.init(title: Text(vm.title),

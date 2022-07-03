@@ -14,6 +14,7 @@ public protocol IAlertPresenter {
     func closeAlert()
 }
 
+@available(OSX, unavailable)
 public class AlertPresenter: ObservableObject, IAlertPresenter {
     
     @Published public var alertPresentationState: AlertPresentationState?
