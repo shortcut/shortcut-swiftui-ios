@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if swift(>=5.5)
+#if swift(>=5.6)
 public extension Button {
     init(priority: TaskPriority? = nil, action: @escaping () async -> Void, @ViewBuilder label: () -> Label) {
         self = Button(action: {
