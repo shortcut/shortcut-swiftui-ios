@@ -73,10 +73,10 @@ struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
                     }
                 }
             }
-                .modalViewPresenter(presentationStateType: TestModalPresentationState.self,
-                                    options: [.tapToDismiss,
-                                              .maxHeight(500)])
-                .environmentObject(testModalViewRouter)
+            .modalViewPresenter(presentationStateType: TestModalPresentationState.self,
+                                options: [.tapToDismiss,
+                                          .maxHeight(500)])
+            .environmentObject(testModalViewRouter)
         }
     }
     
