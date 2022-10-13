@@ -7,10 +7,10 @@
 //
 
 import SwiftUI
+
+#if canImport(UIKit) && canImport(WebKit)
+
 import WebKit
-
-#if canImport(UIKit)
-
 import UIKit
 
 public struct WKWebViewRepresentable: UIViewRepresentable {

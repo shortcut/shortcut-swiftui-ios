@@ -120,8 +120,12 @@ public extension Array where Element == BottomSheet.Options {
                 return customDragIndicatorColor
             }
         }
-
+        
+        #if os(iOS)
         return Color(UIColor.tertiaryLabel)
+        #else
+        return Color.gray
+        #endif
     }
 
     var elementsPadding: EdgeInsets {

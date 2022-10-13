@@ -6,7 +6,7 @@
 //  Copyright © 2022 Shortcut Scandinavia Apps AB. All rights reserved.
 //
 
-#if !os(macOS)
+#if os(iOS)
 import UIKit
 
 extension UIDevice {
