@@ -51,7 +51,8 @@ protocol ModalPresenter {
     func closeModal()
 }
 
-public class ModalViewRouter<PresentationState: ModalPresentationState>: ObservableObject, ModalPresenter {
+/// A router to manipulate (show/close) different modal view states (customSheet, fullscreen, sheet). This class should be `open` so it can be inherited
+open class ModalViewRouter<PresentationState: ModalPresentationState>: ObservableObject, ModalPresenter {
     @Published var customSheetPresentationState: PresentationState? {
         didSet {
             handlePresentationStateChange(oldValue: oldValue, newValue: customSheetPresentationState)
