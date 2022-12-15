@@ -11,7 +11,7 @@ import SwiftUI
 import UIKit
 #endif
 
-/// Fixes issues related to having multiple .sheet() or .fullScreenCover() functions in the same view hierarcy that SwiftUI cant handle
+/// Fixes issues related to having multiple .sheet() or .fullScreenCover() functions in the same view hierarchy that SwiftUI can't handle
 
 public extension View {
     func sheetWithoutConflicts<Item, Content>(item: Binding<Item?>,
