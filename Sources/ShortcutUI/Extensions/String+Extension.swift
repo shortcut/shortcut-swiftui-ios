@@ -9,6 +9,7 @@
 import SwiftUI
 
 public extension String {
-    
-    var text: SwiftUI.Text { SwiftUI.Text(self) }
+    var text: SwiftUI.Text {
+        SwiftUI.Text(self)
+    }
 }
