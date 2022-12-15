@@ -44,7 +44,7 @@ public extension View {
     func overlay<Content: View>(
         alignment: Alignment = .center,
         isPresented: Bool,
-        content: () -> Content
+        @ViewBuilder content: () -> Content
     ) -> some View {
         overlay(
             isPresented ? content() : nil,
