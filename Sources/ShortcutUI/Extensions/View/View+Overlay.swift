@@ -48,7 +48,7 @@ public extension View {
         )
     }
 
-    /// Presents an overlay using the given item as a data source for the sheet's content.
+    /// Presents an overlay using the given item as a data source for the overlay's content.
     ///
     /// Use this method when you need to present an overlay view with content
     /// from a custom data source. The example below shows a custom data source
