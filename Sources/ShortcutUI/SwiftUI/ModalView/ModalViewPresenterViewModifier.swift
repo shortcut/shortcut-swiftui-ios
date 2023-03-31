@@ -20,21 +20,30 @@ struct ModalViewPresenterViewModifier<PresentationState: ModalPresentationState>
 
     public func body(content: Content) -> some View {
         content
-            .fullScreenCoverWithoutConflicts(item: $modalViewRouter.fullScreenModalPresentationState,
-                                             content: getContentView)
-            .sheetWithoutConflicts(item: $modalViewRouter.sheetPresentationState,
-                                   content: getContentView)
-            .bottomSheet(item: $modalViewRouter.customSheetPresentationState,
-                         options: options,
-                         content: getContentView)
+            .fullScreenCoverWithoutConflicts(
+                item: $modalViewRouter.fullScreenModalPresentationState,
+                content: getContentView
+            )
+            .sheetWithoutConflicts(
+                item: $modalViewRouter.sheetPresentationState,
+                content: getContentView
+            )
+            .bottomSheet(
+                item: $modalViewRouter.customSheetPresentationState,
+                options: options,
+                content: getContentView
+            )
     }
 
     private func getContentView(for modalPresentationState: PresentationState) -> some View {
-        modalPresentationState.view(dismissAction: {
-            withAnimation(options.animation) {
-                modalViewRouter.closeModal()
+        modalPresentationState.view(
+            dismissAction: {
+                withAnimation(
+                    options.animation,
+                    modalViewRouter.closeModal
+                )
             }
-        })
+        )
     }
 }
 
@@ -44,8 +53,10 @@ public extension View {
     /// Works with the implementation of the `ModalPresentationState` protocol that represents all modals that can be shown with this presenter.
     /// Need to set an environmentObject of `ModalViewRouter<S: ModalPresentationState>` before using this modifier otherwise an error will occur.
     ///
-    func modalViewPresenter<PresentationState: ModalPresentationState>(presentationStateType: PresentationState.Type,
-                                                                       options: [BottomSheet.Options]) -> some View {
+    func modalViewPresenter<PresentationState: ModalPresentationState>(
+        presentationStateType: PresentationState.Type,
+        options: [BottomSheet.Options]
+    ) -> some View {
         self.modifier(ModalViewPresenterViewModifier<PresentationState>(options: options))
     }
 }
@@ -58,7 +69,7 @@ struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
     }
     
     private struct TestView: View {
-        @StateObject private var testModalViewRouter = TestModalViewRouter()
+        @ObservedObject private var testModalViewRouter = TestModalViewRouter()
         
         @State var color: Color = .red
         
@@ -67,15 +78,27 @@ struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
                 color.opacity(0.5)
                 
                 Button("Show modal") {
-                    testModalViewRouter.setModal(state: .text("Hello World!"),
-                                                 type: .customSheet) {
-                        color = [Color.red, .purple, .blue, .yellow, .green].randomElement() ?? .orange
+                    testModalViewRouter.setModal(
+                        state: .text("Hello World!"),
+                        type: .customSheet
+                    ) {
+                        color = [
+                            Color.red,
+                            .purple,
+                            .blue,
+                            .yellow,
+                            .green
+                        ].randomElement() ?? .orange
                     }
                 }
             }
-            .modalViewPresenter(presentationStateType: TestModalPresentationState.self,
-                                options: [.tapToDismiss,
-                                          .maxHeight(500)])
+            .modalViewPresenter(
+                presentationStateType: TestModalPresentationState.self,
+                options: [
+                    .tapToDismiss,
+                    .maxHeight(500)
+                ]
+            )
             .environmentObject(testModalViewRouter)
         }
     }
@@ -100,5 +123,4 @@ struct ModalViewPresenterViewModifier_Previews: PreviewProvider {
         }
     }
 }
-
 #endif
