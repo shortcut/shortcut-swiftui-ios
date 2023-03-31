@@ -11,13 +11,13 @@ import SwiftUI
 #if !os(macOS)
 struct ModalViewPresenterViewModifier<PresentationState: ModalPresentationState>: ViewModifier {
     @EnvironmentObject var modalViewRouter: ModalViewRouter<PresentationState>
-    
+
     private let options: [BottomSheet.Options]
-    
+
     init(options: [BottomSheet.Options] = []) {
         self.options = options
     }
-    
+
     public func body(content: Content) -> some View {
         content
             .fullScreenCoverWithoutConflicts(
@@ -34,7 +34,7 @@ struct ModalViewPresenterViewModifier<PresentationState: ModalPresentationState>
                 content: getContentView
             )
     }
-    
+
     private func getContentView(for modalPresentationState: PresentationState) -> some View {
         modalPresentationState.view(
             dismissAction: {
