@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-#if !os(macOS)
+#if !os(macOS) && !os(tvOS)
 struct SheetView<Content: View>: View {
     let content: Content
     let options: [BottomSheet.Options]
