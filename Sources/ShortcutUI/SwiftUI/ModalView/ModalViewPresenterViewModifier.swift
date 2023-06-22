@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-#if !os(macOS)
+#if !os(macOS) && !os(tvOS)
 struct ModalViewPresenterViewModifier<PresentationState: ModalPresentationState>: ViewModifier {
     @EnvironmentObject var modalViewRouter: ModalViewRouter<PresentationState>
 
